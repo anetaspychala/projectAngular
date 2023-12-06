@@ -15,11 +15,13 @@ import {
   OwnerPanelContainerComponent
 } from "./components/container/owner-panel-container/owner-panel-container.component";
 import {AddAnimalComponent} from "./components/userComponent/add-animal/add-animal.component";
+import {UserService} from "./services/user.service";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HttpClientModule, HeaderComponent, PriceContainerComponent, LoginContainerComponent, AddUserContainerComponent, TreatmentsContainerComponent, AdminContainerComponent, AddAnimalComponent, FooterComponent, OwnerPanelContainerComponent],
+  imports: [CommonModule, RouterOutlet, HttpClientModule, HeaderComponent, PriceContainerComponent, LoginContainerComponent, AddUserContainerComponent, TreatmentsContainerComponent, AdminContainerComponent, AddAnimalComponent, FooterComponent, OwnerPanelContainerComponent, HttpClientModule],
+  providers: [UserService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
