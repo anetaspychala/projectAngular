@@ -1,35 +1,53 @@
-<div class="container  mt-4 ">
-  <h1>Zarejstruj się </h1>
-<form class="row g-3 ">
+<div class="container mt-4">
+  <h1>Zarejestruj się</h1>
+  <br>
+  <br>
+  <form class="row g-3" >
 
-  <div class="col-md-6">
-    <label for="inputName" class="form-label">Imie</label>
-    <input type="text" class="form-control" id="inputName">
-  </div>
-  <div class="col-md-6">
-    <label for="inputSurname" class="form-label">Nazwisko</label>
-    <input type="text" class="form-control" id="inputSurname">
-  </div>
-  <div class="col-md-6">
-    <label for="inputPhone" class="form-label">Telefon</label>
-    <input type="text" class="form-control" id="inputPhone">
-  </div>
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail4">
-  </div>
-  <div class="col-md-6">
-    <label for="inputLogin" class="form-label">Login</label>
-    <input type="text" class="form-control" id="inputLogin">
-  </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">Password</label>
-    <input type="password" class="form-control" id="inputPassword4">
-  </div>
-  <div class="col-12 mt-4 text-center">
-    <button type="submit" class="btn btn-primary ">Sign in</button>
-  </div>
-  <div class="col-12 mb-4"></div>
-</form>
+    <div class="col-md-6">
+      <label for="inputName" class="form-label">Imię</label>
+      <input type="text" class="form-control" id="inputName" [(ngModel)]="user.firstName" name="firstName" required>
+      <div *ngIf="formSubmitted && !user.firstName" class="text-danger">Imię jest wymagane.</div>
+    </div>
+
+    <div class="col-md-6">
+      <label for="inputSurname" class="form-label">Nazwisko</label>
+      <input type="text" class="form-control" id="inputSurname" [(ngModel)]="user.lastName" name="lastName" required>
+      <div *ngIf="formSubmitted && !user.lastName" class="text-danger">Nazwisko jest wymagane.</div>
+    </div>
+
+    <div class="col-md-6">
+      <label for="inputPhone" class="form-label">Telefon</label>
+      <input type="text" class="form-control" id="inputPhone" [(ngModel)]="user.phone" name="phone" pattern="[0-9]{9}" required>
+      <div *ngIf="formSubmitted && !user.phone" class="text-danger">Telefon jest wymagany.</div>
+      <div *ngIf="user.phone.toString().length !== 9" class="text-danger">Numer telefonu musi mieć 9 cyfr.</div>
+    </div>
+
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" [(ngModel)]="user.email" name="email" required>
+      <div *ngIf="!isValidEmail(user.email)" class="text-danger">Niepoprawny adres email.</div>
+    </div>
+
+    <div class="col-md-6">
+      <label for="inputLogin" class="form-label">Login</label>
+      <input type="text" class="form-control" id="inputLogin" [(ngModel)]="user.login" name="login" required minlength="8">
+      <div *ngIf="formSubmitted && !user.login" class="text-danger">Login jest wymagany.</div>
+      <div *ngIf="formSubmitted && user.login && user.login.length < 8" class="text-danger">Login musi mieć co najmniej 8 znaków.</div>
+    </div>
+
+    <div class="col-md-6">
+      <label for="inputPassword4" class="form-label">Hasło</label>
+      <input type="password" class="form-control" id="inputPassword4" [(ngModel)]="user.password" name="password" required minlength="8">
+      <div *ngIf="formSubmitted && !user.password" class="text-danger">Hasło jest wymagane.</div>
+      <div *ngIf="formSubmitted && user.password && user.password.length < 8" class="text-danger">Hasło musi mieć co najmniej 8 znaków.</div>
+    </div>
+
+    <div class="col-12 mt-4 text-center">
+      <button type="submit" class="btn btn-primary" (click)="addUser()">Zarejestruj się</button>
+    </div>
+
+    <div class="col-12 mb-4"></div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </form>
 </div>
-

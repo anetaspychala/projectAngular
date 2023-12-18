@@ -16,6 +16,9 @@ import {ReservationListComponent} from "./components/adminComponent/reservation-
 import {OwnerPanelContainerComponent} from "./components/container/owner-panel-container/owner-panel-container.component";
 import {OwnerPanelComponent} from "./components/userComponent/owner-panel/owner-panel.component";
 import {AddAnimalComponent} from "./components/userComponent/add-animal/add-animal.component";
+import {RoomListComponent} from "./components/adminComponent/room-list/room-list.component";
+import {AddReservationComponent} from "./components/userComponent/add-reservation/add-reservation.component";
+import {AddRoomComponent} from "./components/userComponent/add-room/add-room.component";
 
 export const routes: Routes = [
   { path: 'price', component: PriceContainerComponent, children: [
@@ -34,12 +37,15 @@ export const routes: Routes = [
   { path: 'admin', component: AdminContainerComponent, children: [
       { path: '', component: AdminComponent},
       { path: 'userlist', component: UserListComponent },
-      { path: 'animalslist', component: AnimalListComponent },
+      { path: 'animallist', component: AnimalListComponent },
+      { path: 'roomlist', component: RoomListComponent },
       { path: 'reservationslist', component: ReservationListComponent },
     ]},
   { path: 'user', component: OwnerPanelContainerComponent, children: [
       { path: '', component: OwnerPanelComponent},
       { path: 'addanimal', component: AddAnimalComponent },
+      { path: 'addreservation', component: AddReservationComponent },
+      { path: 'addroom', component: AddRoomComponent },
     ]},
 ];
 @NgModule({

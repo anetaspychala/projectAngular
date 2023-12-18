@@ -1,11 +1,23 @@
 <h2>Lista rezerwacji</h2>
 <table class ="table table-striped">
   <tr>
-    <th>Numer</th>
+    <th>Id</th>
+ <!--   <th>Numer rezerwacji</th>-->
     <th>Data poczatkowa</th>
     <th>Data koncowa</th>
     <th>Cena</th>
     <th>Status</th>
-    <th>User</th>
+<!--    <th>User</th>-->
   </tr>
+  <tbody>
+  <tr *ngFor="let reservation of reservationList">
+    <td>{{ reservation.id }}</td>
+<!--    <td>{{ reservation.reservationNumber }}</td>-->
+    <td>{{ reservation.startDate }}</td>
+    <td>{{ reservation.endDate }}</td>
+    <td>{{ reservation.price }}</td>
+    <td>{{ reservation.reservationStatus }}</td>
+<!--    <td>{{ reservation.user }}</td>-->
+  </tr>
+  </tbody>
 </table>

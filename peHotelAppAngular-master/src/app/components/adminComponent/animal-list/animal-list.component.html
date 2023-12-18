@@ -1,10 +1,20 @@
 <h2>Lista zwierzat</h2>
 <table class ="table table-striped">
   <tr>
-    <th>Imie</th>
+    <th>Id</th>
     <th>Typ</th>
     <th>Waga</th>
+    <th>Imie</th>
     <th>Płeć</th>
   </tr>
+  <tbody>
+  <tr *ngFor="let animal of animalList">
+    <td>{{ animal.id }}</td>
+    <td>{{ animal.type }}</td>
+    <td>{{ animal.weight }}</td>
+    <td>{{ animal.name }}</td>
+    <td>{{ animal.sex }}</td>
+  </tr>
+  </tbody>
 </table>
 

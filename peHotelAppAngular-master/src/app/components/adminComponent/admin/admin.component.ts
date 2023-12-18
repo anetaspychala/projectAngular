@@ -4,11 +4,12 @@ import {RouterLink, RouterOutlet} from "@angular/router";
 import {UserListComponent} from "../user-list/user-list.component";
 import {AnimalListComponent} from "../animal-list/animal-list.component";
 import {ReservationListComponent} from "../reservation-list/reservation-list.component";
+import {RoomListComponent} from "../room-list/room-list.component";
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, UserListComponent, AnimalListComponent, ReservationListComponent, RouterLink],
+  imports: [CommonModule, RouterOutlet, UserListComponent, AnimalListComponent, ReservationListComponent, RoomListComponent, RouterLink],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
 })
