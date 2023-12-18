@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <h1>Dodaj pokój</h1>
+  <br>
+  <form class="row g-3" (submit)="addRoom()">
+
+    <div class="col-md-6">
+      <label for="roomName" class="form-label">Nazwa pokoju</label>
+      <select class="form-control" id="roomName" [(ngModel)]="room.name" name="roomName" required>
+        <option value="" disabled selected>Wybierz nazwę pokoju</option>
+        <option value="RUBINOWY">RUBINOWY</option>
+        <option value="WIOSENNT">WIOSENNY</option>
+        <option value="MIĘTOWY">MIĘTOWY</option>
+        <option value="SŁONECZNY">SŁONECZNY</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label for="Standard" class="form-label">Standard </label>
+      <select class="form-control" id="standard" [(ngModel)]="room.standard" name="standard" required>
+        <option value="" disabled selected>Wybierz standard</option>
+        <option value="BASIC">BASIC</option>
+        <option value="STANDARD">STANDARD</option>
+        <option value="PREMIUM">PREMIUM</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label for="Weight" class="form-label">Waga </label>
+      <select class="form-control" id="weight" [(ngModel)]="room.animalSize" name="weight" required>
+        <option value="" disabled selected>Wybierz wagę</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label for="active" class="form-label">Aktywny</label>
+      <input type="text" class="form-control" id="active" [(ngModel)]="room.isActive" name="active" required>
+    </div>
+
+  <!--  <div class="col-md-6">
+      <label for="id" class="form-label">Id właściciela</label>
+      <input type="number" class="form-control" id="id" [(ngModel)]="room.id" name="id">
+    </div>-->
+
+    <div class="col-12 mt-4 text-center">
+      <button type="submit" class="btn btn-primary">Dodaj pokoj</button>
+    </div>
+
+    <div class="col-12 mb-4"></div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </form>
+</div>
