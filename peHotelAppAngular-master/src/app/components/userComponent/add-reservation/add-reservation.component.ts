@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, inject, Input, OnInit, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
@@ -16,6 +16,9 @@ import {ReservationService} from "../../../services/reservation.service";
   styleUrl: './add-reservation.component.css'
 })
 export class AddReservationComponent {
+  @Input() dialogTitle!: string;
+  @ViewChild('appDialog', { static: true }) dialog!: ElementRef<HTMLDialogElement>;
+  cdr = inject(ChangeDetectorRef);
 
   reservation: Reservation = {
     id: 0,
@@ -32,6 +35,7 @@ export class AddReservationComponent {
     this.reservationService.postReservation(this.reservation).subscribe(
       response => {
         console.log('Reservation added successfully', response);
+        this.dialog.nativeElement.showModal();
       },
       error => {
         console.error('Error adding reservation', error);

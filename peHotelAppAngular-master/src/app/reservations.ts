@@ -8,8 +8,9 @@ export class UserModel implements User {
   phone: number;
   login: string;
   password: string;
+  roles: string;
 
-  constructor(id: number, firstName: string, lastName: string, email: string, phone: number, login: string, password: string) {
+  constructor(id: number, firstName: string, lastName: string, email: string, phone: number, login: string, password: string, roles: string) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -17,6 +18,7 @@ export class UserModel implements User {
     this.phone = phone;
     this.login = login;
     this.password = password;
+    this.roles = roles;
   }
 }
 

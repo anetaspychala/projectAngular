@@ -8,7 +8,7 @@ import {User} from "../users";
 })
 
 export class UserPostService {
-  private baseURL = "http://localhost:8080/addUser"
+  private baseURL = "http://localhost:8080/userpanel/addUser"
 
   constructor(private httpClient: HttpClient) { }
 

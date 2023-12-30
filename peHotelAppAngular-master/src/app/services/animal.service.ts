@@ -9,8 +9,10 @@ import {User} from "../users";
 })
 
 export class AnimalService {
-  private baseURL = "http://localhost:8080/animals"
-  private postURL = "http://localhost:8080/addAnimal"
+  private baseURL = "http://localhost:8080/adminpanel/animals"
+  private postURL = "http://localhost:8080/userpanel/addAnimal"
+  private deleteURL = 'http://localhost:8080/adminpanel/deleteAnimal/{id}';
+  private editURL = 'http://localhost:8080/adminpanel/editAnimal/{id}';
   constructor(private httpClient: HttpClient) { }
 
   getAnimalsList(): Observable<Animal[]>{
@@ -20,5 +22,14 @@ export class AnimalService {
   postAnimal(animal: Animal): Observable<Animal[]> {
     console.log('Calling postAnimal');
     return this.httpClient.post<Animal[]>(this.postURL, animal);
+  }
+
+  deleteAnimal(id: number) {
+    console.log('Delete Animal');
+    return this.httpClient.delete(`${this.deleteURL.replace('{id}', id.toString())}`, { responseType: 'text' });
+  }
+  editAnimal(id: number, updatedAnimal: Animal): Observable<Animal> {
+    console.log('Edit Animal');
+    return this.httpClient.put<Animal>(`${this.editURL.replace('{id}', id.toString())}`, updatedAnimal);
   }
 }

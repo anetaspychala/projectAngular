@@ -1,4 +1,7 @@
+<div class="container mt-4">
+  <br>
 <h2>Lista pokoi</h2>
+  <br>
 <table class ="table table-striped">
   <tr>
     <th>Id</th>
@@ -6,6 +9,7 @@
     <th>Standard</th>
     <th>Wielkość zwierzęcia</th>
     <th>Aktywny pokoj</th>
+    <th></th>
    <!-- <th>Id rezerwacji</th>-->
   </tr>
   <tbody>
@@ -15,7 +19,46 @@
     <td>{{ room.standard }}</td>
     <td>{{ room.animalSize }}</td>
     <td>{{ room.isActive }}</td>
+    <button class="delete-button" aria-label="Delete button" (click)="deleteRoom(room.id)" >
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button class="edit-button" aria-label="Edit button" (click)="editRoom(room.id)">
+      <mat-icon>Edit</mat-icon>
+    </button>
   <!--  <td>{{ room.reservationIds }}</td>-->
   </tr>
   </tbody>
 </table>
+
+<dialog #appDialog class="border border-primary bg-white text-black w-fit max-w-screen-sm">
+  <h1 class="text-2xl font-semibold w-100 border-b border-slate-300 px-2 mb-4"(click)="appDialog.close()">Pomyślnie usunięto pokój</h1>
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="appDialog.close()">Close</button>
+  <ng-content></ng-content>
+</dialog>
+
+<div class="container mt-4" *ngIf="isEditMode">
+  <form #userForm="ngForm" (ngSubmit)="putRoom()">
+    <div class="mb-3">
+      <label for="id" class="form-label">id</label>
+      <input type="id" class="form-control" id="id"  name="id" [(ngModel)]="currentRoomId" >
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Imie</label>
+      <input type="name" class="form-control" id="name"  name="Name" [(ngModel)]="editedName">
+    </div>
+    <div class="mb-3">
+      <label for="standard" class="form-label">Standard</label>
+      <input type="standard" class="form-control" id="standard" name="standard" [(ngModel)]="editedStandard">
+    </div>
+    <div class="mb-3">
+      <label for="size" class="form-label">Wielkość</label>
+      <input type="size" class="form-control" id="size"   name="size" [(ngModel)]="editedAnimalSize">
+    </div>
+    <div class="mb-3">
+      <label for="active" class="form-label">Aktywny</label>
+      <input type="active" class="form-control" id="active"name="active" [(ngModel)]="editedActive">
+    </div>
+    <button type="submit" class="btn btn-primary" >Submit</button>
+  </form>
+</div>
+</div>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, inject, Input, OnInit, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import {Animal} from "../../../animals";
@@ -14,6 +14,9 @@ import {RouterLink, RouterOutlet} from "@angular/router";
   styleUrl: './add-animal.component.css'
 })
 export class AddAnimalComponent {
+  @Input() dialogTitle!: string;
+  @ViewChild('appDialog', { static: true }) dialog!: ElementRef<HTMLDialogElement>;
+  cdr = inject(ChangeDetectorRef);
 
   animal: Animal= {
     id: 0,
@@ -28,6 +31,7 @@ export class AddAnimalComponent {
     this.animalService.postAnimal(this.animal).subscribe(
       response => {
         console.log('Animal added successfully', response);
+        this.dialog.nativeElement.showModal();
       },
       error => {
         console.error('Error adding animal', error);

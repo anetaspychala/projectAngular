@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, inject, Input, OnInit, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import {Room} from "../../../rooms";
@@ -13,6 +13,9 @@ import {RoomService} from "../../../services/room.service";
   styleUrl: './add-room.component.css'
 })
 export class AddRoomComponent {
+  @Input() dialogTitle!: string;
+  @ViewChild('appDialog', { static: true }) dialog!: ElementRef<HTMLDialogElement>;
+  cdr = inject(ChangeDetectorRef);
 
   room: Room ={
     id: 0,
@@ -31,6 +34,7 @@ export class AddRoomComponent {
     this.roomService.postRoom(this.room).subscribe(
       response => {
         console.log('Room added successfully', response);
+        this.dialog.nativeElement.showModal();
       },
       error => {
         console.error('Error adding room', error);

@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, inject, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {UserPostService} from "../../../services/user-post.service";
 import {User} from "../../../users";
 import {FormsModule} from "@angular/forms";
+
 
 @Component({
   selector: 'app-add-user',
@@ -15,6 +16,10 @@ import {FormsModule} from "@angular/forms";
 
 export class AddUserComponent {
 
+  @Input() dialogTitle!: string;
+  @ViewChild('appDialog', { static: true }) dialog!: ElementRef<HTMLDialogElement>;
+  cdr = inject(ChangeDetectorRef);
+
    user: User = {
      id: 0,
      firstName: '',
@@ -22,7 +27,8 @@ export class AddUserComponent {
      email: '',
      phone: 0,
      login: '',
-     password: ''
+     password: '',
+     roles: '',
    };
 
   constructor(private userPostService: UserPostService) {
@@ -34,6 +40,7 @@ export class AddUserComponent {
     this.userPostService.postUser(this.user).subscribe(
       response => {
         console.log('User added successfully', response);
+        this.dialog.nativeElement.showModal();
       },
       error => {
         console.error('Error adding user', error);
@@ -44,4 +51,5 @@ export class AddUserComponent {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
+
 }
